@@ -1,0 +1,33 @@
+`define FFD_MACRO(d, clk, myedge="negedge", reset, q)\
+	generate case(``myedge)\
+	 "posedge": begin\
+		always_ff@(posedge ``clk , posedge ``reset) begin\
+			if(``reset)\
+				``q<=  0;\
+			else	``q<=``d;\
+			end\
+		end\
+	"negedge": begin\
+		always_ff@(posedge ``clk , negedge ``reset) begin\
+			if(!``reset)\
+				``q<=   0;\
+			else	``q<= ``d;\
+			end\
+		end\
+	endcase endgenerate
+
+`define SEVERUS(severity="INFO",finish_n=0)\
+	generate case(``severity)\
+		"FATAL": begin\
+			if(``finish_n==0)\
+				 $fatal(``finish_n,"Fatal event occurred");\
+			else if(``finish_n==1)\
+				 $fatal(``finish_n,"Fatal event occurred");\
+			else if(``finish_n==2)\
+				$fatal(``finish_n,"Fatal event occurred");\
+		end\
+		"ERROR": 	$error("Error event occurred");\
+		"WARNING":	$warning("Warning event occurred");\
+		"INFO": 	$info("Info event occurred");\
+	endcase endgenerate
+
