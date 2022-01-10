@@ -1,2 +1,4 @@
 Abisai: 
 El lab3 no tiene run.do. No se puede saber si funciona, y tampoco tiene testbench.
+Alumno Cesar:
+Una disculpa profe, el TB estaba en el folder src ya lo reubique al folder TB. De la misma manera el run.do y wave.do tambien esta en el folder TB. 
